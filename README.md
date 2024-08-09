@@ -14,6 +14,8 @@ Book Glance is a React-based web application that allows users to search for boo
 1. **Node.js**: Ensure that Node.js is installed on your machine. You can download it from [nodejs.org](https://nodejs.org/).
 
 2. **Git**: Make sure Git is installed to manage your code repository. Download it from [git-scm.com](https://git-scm.com/).
+   
+3. **Google Books API**: Ensure that you have google book api with you. You can get the api and documentation from [googlebooks.com](https://developers.google.com/books).
 
 ### Setup
 
