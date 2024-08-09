@@ -1,6 +1,3 @@
-Got it! Here’s the updated README with a clearer explanation of the application's purpose and functionality:
-
----
 
 # Book Glance
 
