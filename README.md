@@ -73,6 +73,14 @@ Book Glance is designed to provide users with a comprehensive platform for book 
 
 This application is ideal for book enthusiasts who want a streamlined way to discover and learn more about books, as well as for developers interested in integrating with external APIs and building React applications.
 
+## Author
 
-**Author**: Arun Kumar Sah
-**Copyright**: © 2024 Arun Kumar Sah. All rights reserved.
+**Arun Kumar Sah**
+
+## Copyright
+
+© 2024 Arun Kumar Sah. All rights reserved.
+
+## References
+
+- [GitHub Repository](https://github.com/arunsah10/Book-Glance)
