@@ -5,34 +5,41 @@ import Searchform from "./searchform";
 import Footer from "./footer";
 import Book from "./book";
 import LoadingCard from "./loadingCard";
-const dotenv = require('dotenv');
-dotenv.config({ path: './.env' });
+
+// Ensure you have dotenv as a devDependency
 const API_KEY = process.env.REACT_APP_API_KEY;
-// Use apiKey in your API requests
 
 const BookDetails = () => {
   const [details, setDetails] = useState([]);
-
   const [term, setTerm] = useState("Ramayana");
-
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchDetails = async () => {
       setIsLoading(true);
-      const resources = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API_KEY}&maxResults=11`
-      );
-      setDetails(resources.data.items);
-      setIsLoading(false);
+      try {
+        const resources = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API_KEY}&maxResults=11`
+        );
+        setDetails(resources.data.items);
+      } catch (error) {
+        console.error("Error fetching book details:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchDetails();
   }, [term]);
 
   const loadMore = async () => {
-    const resources = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API_KEY}maxResults=8&startIndex=${details.length}`
-    );
-    setDetails((oldDetails) => [...oldDetails, ...resources.data.items]);
+    try {
+      const resources = await axios.get(
+        `https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API_KEY}&maxResults=8&startIndex=${details.length}`
+      );
+      setDetails((oldDetails) => [...oldDetails, ...resources.data.items]);
+    } catch (error) {
+      console.error("Error loading more books:", error);
+    }
   };
 
   return (
@@ -55,7 +62,7 @@ const BookDetails = () => {
           <LoadingCard />
           <LoadingCard />
         </section>
-      ) : !details ? (
+      ) : !details || details.length === 0 ? (
         <h1
           className="loading-name"
           style={{
@@ -84,14 +91,12 @@ const BookDetails = () => {
                 Didn't find the book you love?
               </h3>
               <br />
-
               <img
                 style={{ width: "100%" }}
                 src={logo}
                 alt="A man reading a book"
                 srcSet=""
               />
-
               <h3 style={{ fontSize: "1.21rem", color: "white" }}>
                 Search for your favourite{" "}
                 <span style={{ fontWeight: "bold", color: "black" }}>
