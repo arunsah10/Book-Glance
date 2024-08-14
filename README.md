@@ -42,6 +42,11 @@ Book Glance is a React-based web application designed to help users discover and
    ```bash
    npm install
    ```
+   If it does npt work then try:
+      ```bash
+   npm install --legacy-peer-deps
+
+   ```
 
 4. **Configure Environment Variables**
 
